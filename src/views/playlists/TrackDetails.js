@@ -1,21 +1,21 @@
 import React from 'react';
 
 export function TrackDetails({ track }) {
-  return (
+  return (!track ? null :
     <div className="ui segment">
       <div className="ui items">
         <div className="item">
           <div className="image">
-            <img src={track.thumbnailURL} />
+            <img src={track.thumbnailURL} alt="" />
           </div>
           <div className="content">
-            <a className="header">{track.title}</a>
+            <div className="header">{track.title}</div>
             <div className="meta"><span>{track.artist}</span><span>{track.length}</span></div>
             <div className="extra">
               {track.spotifyURL &&
                 <a
                   href={track.spotifyURL}
-                  className="ui button tiny green button" target="_blank"
+                  className="ui button tiny green button"
                 >
                   <i className="spotify icon"></i>
                   Listen on Spotify
@@ -24,7 +24,7 @@ export function TrackDetails({ track }) {
               {track.chordsURL &&
                 <a
                   href={track.chordsURL}
-                  className="ui button tiny orange button" target="_blank"
+                  className="ui button tiny orange button"
                 >
                   <i className="guitar icon"></i>
                   Show chords
@@ -33,7 +33,7 @@ export function TrackDetails({ track }) {
               {track.lyricsURL &&
                 <a
                   href={track.lyricsURL}
-                  className="ui button tiny teal button" target="_blank"
+                  className="ui button tiny teal button"
                 >
                   <i className="microphone icon"></i>
                   Show lyrics

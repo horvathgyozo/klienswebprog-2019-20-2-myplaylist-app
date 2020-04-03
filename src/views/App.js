@@ -1,36 +1,31 @@
 import React from 'react';
 
-import { Menu } from "./menu/Menu";
-import { PlaylistForm } from "./playlists/Playlistform";
-import { PlaylistList } from "./playlists/PlaylistList";
-import { TrackList } from "./playlists/TrackList";
-import { TrackDetails } from "./playlists/TrackDetails";
-
-import { exampleTracks } from "../domain/track";
-import { examplePlaylists } from "../domain/playlist";
+import { Playlists } from './playlists/Playlists';
+import { Layout } from './layout/Layout';
+import { Home } from './home/Home';
+import { Tracks } from './tracks/Tracks';
+import { Search } from './search/Search';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 export function App() {
-  const selectedPlaylist = examplePlaylists[0]
-  const selectedTrack = exampleTracks[2]
-
   return (
-    <div className="ui container">
-      <Menu />
-      <div className="ui container">
-        <h1>My Playlists</h1>
-        <div className="ui stackable two column grid">
-          <div className="ui six wide column">
-            <h3>Playlists</h3>
-            <PlaylistForm />
-            <PlaylistList playlists={examplePlaylists} selectedPlaylistId={2} />
-          </div>
-          <div className="ui ten wide column">
-            <TrackList playlist={selectedPlaylist} selectedTrackId={3} />
-          </div>
-        </div>
-        <div className="ui divider"></div>
-        <TrackDetails track={selectedTrack} />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/playlists/:playlistId?/:trackId?">
+            <Playlists />
+          </Route>
+          <Route path="/tracks">
+            <Tracks />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+        </Switch>
+      </Layout>
+    </BrowserRouter>
   )
 }

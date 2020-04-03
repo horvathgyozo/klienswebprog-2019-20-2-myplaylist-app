@@ -1,14 +1,15 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
+import { NavLink } from 'react-router-dom';
 
 export function Menu() {
   return (
     <nav className="ui secondary menu">
-      <img src={logo} />
-      <a className="item" href="index.html"><i className="home icon"></i> Home</a>
-      <a className="active item" href="playlists.html"><i className="headphones icon"></i> My Playlists</a>
-      <a className="item" href="tracks.html"><i className="music icon"></i> Tracks</a>
-      <a className="item" href="search.html"><i className="search icon"></i> Search</a>
+      <img src={logo} alt="" />
+      <NavLink className="item" exact to="/"><i className="home icon"></i> Home</NavLink>
+      <NavLink className="item" to="/playlists"><i className="headphones icon"></i> My Playlists</NavLink>
+      <NavLink className="item" to="/tracks"><i className="music icon"></i> Tracks</NavLink>
+      <NavLink className="item" to="/search"><i className="search icon"></i> Search</NavLink>
       <div className="ui right dropdown item">
         John Doe
       <i className="dropdown icon"></i>
