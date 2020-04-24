@@ -7,17 +7,20 @@ import { App } from "./views/App";
 import { PlaylistsProvider } from './state/PlaylistsProvider';
 import { playlistsStorage } from './api/PlaylistsStorage';
 import { examplePlaylists } from './domain/playlist';
+import { TracksProvider } from './state/TracksProvider';
 
 const render = () =>
   ReactDOM.render(
-    <PlaylistsProvider>
-      <App />
-    </PlaylistsProvider>,
+    <TracksProvider>
+      <PlaylistsProvider>
+        <App />
+      </PlaylistsProvider>
+    </TracksProvider>,
     document.getElementById('root')
   );
 
 async function start() {
-  const newPlaylists = await playlistsStorage.fill(examplePlaylists)
+  // const newPlaylists = await playlistsStorage.fill(examplePlaylists)
   // console.log(newPlaylists);
 
   // const newPlaylist = await playlistsStorage.create({ title: 'Something', tracks: [] })

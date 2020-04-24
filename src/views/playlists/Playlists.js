@@ -1,26 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { PlaylistForm } from "./Playlistform";
 import { PlaylistList } from "./PlaylistList";
 import { TrackList } from "./TrackList";
 import { TrackDetails } from "./TrackDetails";
 
-import { exampleTracks } from "../../domain/track";
 import { useParams } from 'react-router-dom';
 import { PlaylistsContext } from '../../state/PlaylistsProvider';
+import { TracksContext } from '../../state/TracksProvider';
 
 export function Playlists() {
   const { playlistId: selectedPlaylistId, trackId: selectedTrackId } = useParams()
 
   const { playlists, addNewPlaylist } = useContext(PlaylistsContext)
+  const { tracks } = useContext(TracksContext)
 
   const playlistsWithTracks = playlists.map(playlist => ({
     ...playlist,
-    tracks: playlist.tracks.map(trackId => exampleTracks.find(track => track.id === trackId))
+    tracks: playlist.tracks.map(trackId => tracks.find(track => track.id === trackId))
   }))
 
   const selectedPlaylist = playlistsWithTracks.find(pl => pl.id === selectedPlaylistId)
-  const selectedTrack = exampleTracks.find(tr => tr.id === selectedTrackId)
+  const selectedTrack = tracks.find(tr => tr.id === selectedTrackId)
 
   return (
     <div className="ui container">
