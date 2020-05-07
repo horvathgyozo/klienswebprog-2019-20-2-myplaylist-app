@@ -44,4 +44,7 @@ export class NedbStorage {
     await this.db.update({ _id: obj._id }, obj, {})
     return obj
   }
+  async delete(id) {
+    await this.db.remove({ _id: id })
+  }
 }

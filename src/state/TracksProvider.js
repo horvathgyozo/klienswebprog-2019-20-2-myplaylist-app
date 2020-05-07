@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { exampleTracks } from "../domain/track";
+import { tracksStorage } from "../api/TracksStorage";
 
 const useTracksService = () => {
   // Data
   const [tracks, setTracks] = useState([])
 
   useEffect(() => {
-    const getAll = () => setTracks(exampleTracks)
+    const getAll = async () => setTracks(await tracksStorage.getAll())
     getAll()
   }, [])
 
   // Operations
-  const addNewTrack = track => {
-    setTracks([...tracks, { ...track, id: Date.now().toString() }])
+  const addNewTrack = async track => {
+    const newTrack = await tracksStorage.create(track)
+    setTracks([...tracks, newTrack])
   }
-  const editTrack = track => {
-    setTracks(tracks.map(tr => tr.id !== track.id ? tr : track))
+  const editTrack = async track => {
+    const updatedTrack = await tracksStorage.update(track)
+    setTracks(tracks.map(tr => tr.id !== track.id ? tr : updatedTrack))
   }
-  const deleteTrack = track => {
+  const deleteTrack = async track => {
+    await tracksStorage.delete(track.id)
     setTracks(tracks.filter(tr => tr.id !== track.id))
   }
 
