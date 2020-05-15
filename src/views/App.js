@@ -7,17 +7,15 @@ import { Tracks } from './tracks/Tracks';
 import { Search } from './search/Search';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setPlaylists } from '../state/playlists/actions';
-import { examplePlaylists } from '../domain/playlist';
-import { setTracks } from '../state/tracks/actions';
-import { exampleTracks } from '../domain/track';
+import { fetchPlaylists } from '../state/playlists/actions';
+import { fetchTracks } from '../state/tracks/actions';
 
 export function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setPlaylists(examplePlaylists))
-    dispatch(setTracks(exampleTracks))
+    dispatch(fetchPlaylists())
+    dispatch(fetchTracks())
   }, [dispatch])
 
   return (

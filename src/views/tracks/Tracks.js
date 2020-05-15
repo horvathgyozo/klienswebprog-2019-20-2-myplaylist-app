@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { TrackForm } from './TrackForm';
 import { Track } from './Track';
-import { PlaylistsContext } from '../../state/PlaylistsProvider';
-import { TracksContext } from '../../state/TracksProvider';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTrack, updateTrack, deleteTrack } from '../../state/tracks/actions';
 import { getTracks } from '../../state/tracks/selectors';

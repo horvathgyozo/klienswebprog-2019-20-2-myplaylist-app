@@ -7,6 +7,6 @@ export const getPlaylistsWithTracks = state => {
 
   return playlists.map(playlist => ({
     ...playlist,
-    tracks: playlist.tracks.map(trackId => tracks.find(track => track.id === trackId))
+    tracks: playlist.tracks.map(trackId => tracks.find(track => track.id === trackId)).filter(tracks => !!tracks)
   }))
 }

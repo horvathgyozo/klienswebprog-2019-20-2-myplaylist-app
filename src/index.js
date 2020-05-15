@@ -10,6 +10,8 @@ import { examplePlaylists } from './domain/playlist';
 import { TracksProvider } from './state/TracksProvider';
 import { configureStore } from './state/store';
 import { Provider } from 'react-redux';
+import { tracksStorage } from './api/TracksStorage';
+import { exampleTracks } from './domain/track';
 
 const store = configureStore()
 
